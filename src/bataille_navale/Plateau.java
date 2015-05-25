@@ -130,7 +130,8 @@ import java.util.Scanner;
                         while(bol==false){
                         tabB[i].renseignementsSimples();
                         bol=paintField(tabB[i],i+1);
-                        System.out.println(paintField(tabB[i],i+1));
+                        //JUSTE UNE HISTOIRE DE VERIFICATION 
+                        //System.out.println(paintField(tabB[i],i+1));
                         }
                     }
                     if (type==2){}
