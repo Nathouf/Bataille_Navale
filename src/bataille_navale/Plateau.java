@@ -92,12 +92,16 @@ import java.util.Scanner;
     
     public boolean emplacementPossible(Bateau b){
         boolean bol=true;
-        if((b.getHorizontal())&&(b.getXCoordinate()+b.getLength()<tabF[0].length)) 
+        if((b.getHorizontal())&&(b.getXCoordinate()+b.getLength()<tabF[0].length)){ 
             for(int i=0;i<b.getLength();i++)
                 if (tabF[b.getYCoordinate()][b.getXCoordinate()+i]!=0) bol=false;
-        if((b.getHorizontal())&&(b.getYCoordinate()+b.getLength()<tabF.length))
+        }
+        else bol=false;
+        if((b.getHorizontal())&&(b.getYCoordinate()+b.getLength()<tabF.length)){
             for(int j=0;j<b.getLength();j++)
                 if (tabF[b.getYCoordinate()+j][b.getXCoordinate()]!=0) bol=false;
+        }
+        else bol=false;
         return(bol);
     }
     
