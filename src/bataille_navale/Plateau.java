@@ -35,11 +35,6 @@ import java.util.Scanner;
        //filling a table of boats of a specific length 4x1 3x2 2x3 1x4
             for(int i=1;i<5;i++){
                 j++;
-                Bateau b=new Bateau(1);
-                tabB[j]=b;
-            }
-            for(int i=1;i<4;i++){
-                j++;
                 Bateau b=new Bateau(2);
                 tabB[j]=b;
             }
@@ -48,8 +43,13 @@ import java.util.Scanner;
                 Bateau b=new Bateau(3);
                 tabB[j]=b;
             }
+            for(int i=1;i<3;i++){
+                j++;
+                Bateau b=new Bateau(3);
+                tabB[j]=b;
+            }
             j++;
-                Bateau b=new Bateau(4);
+                Bateau b=new Bateau(6);
                 tabB[j]=b;
        
     }
@@ -88,17 +88,44 @@ import java.util.Scanner;
             System.out.println();
         }
     }
-        
+    
+    public boolean emplacementPossible(Bateau b){
+        boolean bol=true;
+        if((b.getHorizontal())&&(b.getXCoordinate()+b.getLength()<tabF[0].length)) 
+            for(int i=0;i<b.getLength();i++)
+                if (tabF[b.getYCoordinate()][b.getXCoordinate()+i]!=0) bol=false;
+        if((b.getHorizontal())&&(b.getYCoordinate()+b.getLength()<tabF.length))
+            for(int j=0;j<b.getLength();j++)
+                if (tabF[b.getYCoordinate()+j][b.getXCoordinate()]!=0) bol=false;
+        return(bol);
+    }
+    
+    
+    //positionne le bateau sur le plateau
+    public boolean paintField(Bateau b,int nr){
+        boolean bol=false;
+        if (emplacementPossible(b)){
+            bol=true;
+            if(b.getHorizontal()) for(int i=0;i<b.getLength();i++) tabF[b.getYCoordinate()][b.getXCoordinate()+i]=nr;
+            if(!b.getHorizontal()) for(int i=0;i<b.getLength();i++) tabF[b.getYCoordinate()+i][b.getXCoordinate()]=nr;
+        }
+        return(bol);
+    }
+    
     public void fillPlateau(){
-        if (name!="ordinateur")
-            {
+        //pour le joueur reel
+        if (name!="ordinateur"){
                 for(int i=0;i<tabB.length;i++){
                     if (type==1) {
+                        do{
                         tabB[i].renseignementsSimples();
+                        paintField(tabB[i],i);
+                        }while(!paintField(tabB[i],i));
                     }
+                    if (type==2){}
+                    if (type==3){}
+                    if (type==4){}
                 }
-            }
-                    
-    
+        }
     }
 }
