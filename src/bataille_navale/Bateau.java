@@ -47,9 +47,22 @@ public class Bateau {
         state=1;
     }
     
+    public boolean getHorizontal(){
+        return(dHorizontal);
+    }
+    public int getXCoordinate(){
+        return(xCoordinate);
+    }
+    public int getYCoordinate(){
+        return(yCoordinate);
+    }
+    public int getLength(){
+        return(length);
+    }
+    
     public void setCoordinatesSimple(String S){
-        int l=(int)(S.charAt(1))-(int)('A');
-        int c=(int)(S.charAt(2))-(int)('0');
+        int l=(int)(S.charAt(1))-(int)('A')-1;
+        int c=(int)(S.charAt(2))-(int)('0')-1;
         yCoordinate=l;
         xCoordinate=c;
     }
