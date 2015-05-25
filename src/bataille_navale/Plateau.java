@@ -32,7 +32,7 @@ import java.util.Scanner;
        fill0();
        tabB=new Bateau[10];
        int j=-1;
-       //filling a table of boats of a specific length 4x1 3x2 2x3 1x4
+       //filling a table of boats of a specific length 4x2 2x3 2x4 1x6
             for(int i=1;i<5;i++){
                 j++;
                 Bateau b=new Bateau(2);
