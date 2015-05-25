@@ -117,7 +117,7 @@ import java.util.Scanner;
             if(!b.getHorizontal()) for(int i=0;i<b.getLength();i++) tabF[b.getYCoordinate()+i][b.getXCoordinate()]=nr;
         }
         affichageRudimentaire();
-        System.out.println(emplacementPossible(b));
+        //System.out.println(emplacementPossible(b));
         return(bol);
     }
     
@@ -129,7 +129,7 @@ import java.util.Scanner;
                         do{
                         tabB[i].renseignementsSimples();
                         paintField(tabB[i],i);
-                        }while(!paintField(tabB[i],i+1));
+                        }while(paintField(tabB[i],i+1)==false);
                     }
                     if (type==2){}
                     if (type==3){}
