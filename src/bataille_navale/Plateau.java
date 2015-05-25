@@ -87,6 +87,7 @@ import java.util.Scanner;
                 System.out.print(tabF[i][j]);
             System.out.println();
         }
+        System.out.println();
     }
     
     public boolean emplacementPossible(Bateau b){
@@ -109,6 +110,8 @@ import java.util.Scanner;
             if(b.getHorizontal()) for(int i=0;i<b.getLength();i++) tabF[b.getYCoordinate()][b.getXCoordinate()+i]=nr;
             if(!b.getHorizontal()) for(int i=0;i<b.getLength();i++) tabF[b.getYCoordinate()+i][b.getXCoordinate()]=nr;
         }
+        affichageRudimentaire();
+        System.out.println(emplacementPossible(b));
         return(bol);
     }
     
