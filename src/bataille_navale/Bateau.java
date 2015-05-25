@@ -61,8 +61,8 @@ public class Bateau {
     }
     
     public void setCoordinatesSimple(String S){
-        int l=(int)(S.charAt(1))-(int)('A')-1;
-        int c=(int)(S.charAt(2))-(int)('0')-1;
+        int l=(int)(S.charAt(0))-(int)('A')-1;
+        int c=(int)(S.charAt(1))-(int)('0')-1;
         yCoordinate=l;
         xCoordinate=c;
     }
@@ -87,6 +87,9 @@ public class Bateau {
                 System.out.println("donner l'orientation bateau, H pour horizontale et V pour verticale");
                 String S=kbd.next();
                 bol=setPosition(S);
+                System.out.println("donner les coordones du bateau");
+                String SC=kbd.next();
+                setCoordinatesSimple(SC);
             }
         
     }
