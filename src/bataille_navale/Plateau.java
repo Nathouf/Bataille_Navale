@@ -120,7 +120,7 @@ import java.util.Scanner;
                         do{
                         tabB[i].renseignementsSimples();
                         paintField(tabB[i],i);
-                        }while(!paintField(tabB[i],i));
+                        }while(!paintField(tabB[i],i+1));
                     }
                     if (type==2){}
                     if (type==3){}
