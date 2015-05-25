@@ -50,6 +50,8 @@ public class Partide {
             plateau1=new Plateau(nom1);
             plateau2=new Plateau(nom2);
             ship=10;
+            plateau1.fillPlateau();
+            plateau2.fillPlateau();
         }
         if(type==2){
             System.out.println("introduce the number of lines");
