@@ -69,11 +69,11 @@ public class Bateau {
     
     public boolean setPosition(String S){
         boolean corect=false;
-        if((S=="h")||(S=="H")){
+        if((S.charAt(0)=='h')||(S.charAt(0)=='H')){
             dHorizontal=true;
             corect=true;
         }
-        else if((S=="v")||(S=="V")) {
+        else if((S.charAt(0)=='v')||(S.charAt(0)=='V')) {
             dHorizontal=false;
             corect=true;
         }
@@ -82,19 +82,13 @@ public class Bateau {
     }
     
     public void renseignementsSimples(){
-        if(length==1){
-            System.out.println("donner les coordonees du bateau");
-            String S=kbd.next();
-            setCoordinatesSimple(S);
-        }
-        else {
-            boolean bol=false;
+        boolean bol=false;
             while(bol==false){
                 System.out.println("donner l'orientation bateau, H pour horizontale et V pour verticale");
                 String S=kbd.next();
                 bol=setPosition(S);
             }
-        }
+        
     }
     
     public boolean tir(int x, int y){
