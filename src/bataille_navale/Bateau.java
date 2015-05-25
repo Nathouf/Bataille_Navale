@@ -9,6 +9,7 @@ package bataille_navale;
  *
  * @author Dannemp
  */
+ //COmmit try 
 import java.util.Scanner;
 public class Bateau {
     private int length;
