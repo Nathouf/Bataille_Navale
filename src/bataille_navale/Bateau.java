@@ -63,7 +63,8 @@ public class Bateau {
     
     public void setCoordinatesSimple(String S){
         int l=(int)(S.charAt(0))-(int)('A');
-        int c=(int)(S.charAt(1))-(int)('0')-1;
+        String temp=S.substring(1,S.length());
+        int c=Integer.valueOf(temp)-1;
         yCoordinate=l;
         xCoordinate=c;
     }
