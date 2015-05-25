@@ -86,10 +86,10 @@ public class Bateau {
     public void renseignementsSimples(){
         boolean bol=false;
             while(bol==false){
-                System.out.println("donner l'orientation bateau, H pour horizontale et V pour verticale");
+                System.out.println("Bateau de taille "+length+". Donner l'orientation, H pour horizontale et V pour verticale.");
                 String S=kbd.next();
                 bol=setPosition(S);
-                System.out.println("bateau de taille "+length+" donner les coordones du bateau");
+                System.out.println("Bateau de taille "+length+". Donner les coordones du bateau.");
                 String SC=kbd.next();
                 setCoordinatesSimple(SC);
             }
