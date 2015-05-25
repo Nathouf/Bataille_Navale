@@ -97,7 +97,7 @@ import java.util.Scanner;
                 if (tabF[b.getYCoordinate()][b.getXCoordinate()+i]!=0) bol=false;
         }
         else bol=false;
-        if((b.getHorizontal())&&(b.getYCoordinate()+b.getLength()<tabF.length)){
+        if((!b.getHorizontal())&&(b.getYCoordinate()+b.getLength()<tabF.length)){
             for(int j=0;j<b.getLength();j++)
                 if (tabF[b.getYCoordinate()+j][b.getXCoordinate()]!=0) bol=false;
         }
