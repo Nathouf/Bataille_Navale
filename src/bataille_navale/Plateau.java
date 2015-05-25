@@ -45,7 +45,7 @@ import java.util.Scanner;
             }
             for(int i=1;i<3;i++){
                 j++;
-                Bateau b=new Bateau(3);
+                Bateau b=new Bateau(4);
                 tabB[j]=b;
             }
             j++;
@@ -126,10 +126,12 @@ import java.util.Scanner;
         if (name!="ordinateur"){
                 for(int i=0;i<tabB.length;i++){
                     if (type==1) {
-                        do{
+                        boolean bol=false;
+                        while(bol==false){
                         tabB[i].renseignementsSimples();
-                        paintField(tabB[i],i);
-                        }while(paintField(tabB[i],i+1)==false);
+                        bol=paintField(tabB[i],i+1);
+                        System.out.println(paintField(tabB[i],i+1));
+                        }
                     }
                     if (type==2){}
                     if (type==3){}
