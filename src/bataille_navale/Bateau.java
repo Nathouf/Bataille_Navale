@@ -88,7 +88,7 @@ public class Bateau {
                 System.out.println("donner l'orientation bateau, H pour horizontale et V pour verticale");
                 String S=kbd.next();
                 bol=setPosition(S);
-                System.out.println("donner les coordones du bateau");
+                System.out.println("bateau de taille "+length+" donner les coordones du bateau");
                 String SC=kbd.next();
                 setCoordinatesSimple(SC);
             }
