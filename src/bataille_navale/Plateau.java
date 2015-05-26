@@ -52,17 +52,16 @@ import java.util.Scanner;
                 Bateau b=new Bateau(6);
                 tabB[j]=b;
        
-    }
-    public Plateau(String nom,int line,int column, int ship){
+    }//constructeur pour le type de jeu 1
+    public Plateau(String nom,int line,int column, Bateau[] b){
        name=nom;
        type=2;
-       ships=ship;
+       ships=b.length;
        lines=line;
        columns=column;
        tabF=new int[line][column];
        fill0();
-       tabB=new Bateau[ships];
-       //for(i=0;i<5;i++)
+       tabB=b;
     }
     public Plateau(String nom,int line,int column){
        name=nom;
