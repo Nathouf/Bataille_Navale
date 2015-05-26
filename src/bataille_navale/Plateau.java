@@ -38,7 +38,7 @@ import java.util.Scanner;
                 Bateau b=new Bateau(2);
                 tabB[j]=b;
             }
-            for(int i=1;i<3;i++){
+            for(int i=1;i<4;i++){
                 j++;
                 Bateau b=new Bateau(3);
                 tabB[j]=b;
