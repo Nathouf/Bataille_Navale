@@ -73,6 +73,7 @@ public class Partide {
             boolean bol=false;
             int test=0;
             int i=0;
+            // ici il y a une histoire d'initialisation du tableau...
             Bateau[] b;
             while((bol==false)){
                 do{
@@ -89,8 +90,8 @@ public class Partide {
                     bol=numberOfShipsPossible(b,line,column);
                 }while((test!=-1));
             }
-            plateau1=new Plateau(nom1,line,column,ship);
-            plateau2=new Plateau(nom2,line,column,ship);
+            plateau1=new Plateau(nom1,line,column,b);
+            plateau2=new Plateau(nom2,line,column,b);
         }
         if(type==3){
             System.out.println("introduce the number of lines");
