@@ -74,12 +74,12 @@ import java.util.Scanner;
        tabB=new Bateau[10];
        //for(i=0;i<5;i++)
     }
-
+    
     public void fill0(){
         for(int i=0;i<tabF.length;i++)
             for(int j=0;j<tabF[0].length;j++)
                 tabF[i][j]=0;
-    }
+    }//remplie tout le plateau avec des 0
 
     public void affichageRudimentaire(){
         for(int i=0;i<tabF.length;i++){
@@ -88,7 +88,7 @@ import java.util.Scanner;
             System.out.println();
         }
         System.out.println();
-    }
+    }//affiche le plateau de maniere rudimentaire
     
     public boolean emplacementPossible(Bateau b){
         boolean bol=true;
@@ -105,10 +105,8 @@ import java.util.Scanner;
         }
         
         return(bol);
-    }
-    
-    
-    //positionne le bateau sur le plateau
+    }//renvoie true si l'emplacement du bateau est possible
+            
     public boolean paintField(Bateau b,int nr){
         boolean bol=false;
         if (emplacementPossible(b)){
@@ -119,13 +117,14 @@ import java.util.Scanner;
         affichageRudimentaire();
         //System.out.println(emplacementPossible(b));
         return(bol);
-    }
+    }//positionne le bateau sur le plateau
     
     public void fillPlateau(){
         //pour le joueur reel
         if (name!="ordinateur"){
                 for(int i=0;i<tabB.length;i++){
-                    if (type==1) {
+                    // je pense que la methode que j'ai fait est assez generale donc il y pas la peine de diviser par types
+                    //if (type==1) {
                         boolean bol=false;
                         while(bol==false){
                         tabB[i].renseignementsSimples();
@@ -133,11 +132,11 @@ import java.util.Scanner;
                         //JUSTE UNE HISTOIRE DE VERIFICATION 
                         //System.out.println(paintField(tabB[i],i+1));
                         }
-                    }
+                    /*}
                     if (type==2){}
                     if (type==3){}
-                    if (type==4){}
+                    if (type==4){}*/
                 }
         }
-    }
+    }//remplie le plateau avec des bateaux
 }
