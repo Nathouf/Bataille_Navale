@@ -26,6 +26,16 @@ public class Partide {
     public String getNom2(){
     return nom2;}
     
+    public boolean numberOfShipsPossible(Bateau[] b, int lignes, int colonnes){
+        boolean bol=false;
+        int Max=lignes*colonnes;
+        int Cas=0;
+        for (int i=0;i<b.length;i++)
+            Cas=Cas+b[i].getLength();
+        if (Cas<=Max) bol=true;
+        return(bol);
+    }
+    
     public void initierPlateau(){
         System.out.println("Introduce S for singleplayer or M for multiplayer");
         String sp_mp=kbd.next();
@@ -50,7 +60,9 @@ public class Partide {
             plateau1=new Plateau(nom1);
             plateau2=new Plateau(nom2);
             ship=10;
+            System.out.println("Le premier joueur positionne sa flotille");
             plateau1.fillPlateau();
+            System.out.println("Le second joueur positionne sa flotille");
             plateau2.fillPlateau();
         }
         if(type==2){
@@ -58,8 +70,25 @@ public class Partide {
             int line=kbd.nextInt();
             System.out.println("introduce the number of columns");
             int column=kbd.nextInt();
-            System.out.println("introduce the number of ships");
-            ship=kbd.nextInt();
+            boolean bol=false;
+            int test=0;
+            int i=0;
+            Bateau[] b;
+            while((bol==false)){
+                do{
+                    System.out.println("introduce the length and then the number of ships of that length that you want to have, introduce -1 to stop");
+                    System.out.println("introduce the length");
+                    int givenLength=kbd.nextInt();
+                    test=givenLength;
+                    System.out.println("introduce the number of ships of this length");
+                    int nrLength=kbd.nextInt();
+                    int k=i;
+                    i=i+nrLength;
+                    for(int j=k;j<=i;j++)
+                       b[j]=new Bateau(givenLength);
+                    bol=numberOfShipsPossible(b,line,column);
+                }while((test!=-1));
+            }
             plateau1=new Plateau(nom1,line,column,ship);
             plateau2=new Plateau(nom2,line,column,ship);
         }
