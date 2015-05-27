@@ -126,8 +126,10 @@ import java.util.Scanner;
                     //if (type==1) {
                         boolean bol=false;
                         while(bol==false){
-                        tabB[i].renseignementsSimples();
-                        bol=paintField(tabB[i],i+1);
+                            if(lines<=26)
+                            tabB[i].renseignementsSimples();
+                            else tabB[i].renseignementsComplexes();
+                            bol=paintField(tabB[i],i+1);
                         //JUSTE UNE HISTOIRE DE VERIFICATION 
                         //System.out.println(paintField(tabB[i],i+1));
                         }
