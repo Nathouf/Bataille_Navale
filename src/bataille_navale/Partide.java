@@ -92,6 +92,7 @@ public class Partide {
                     bol=numberOfShipsPossible(b,line,column);
             }
             plateau1=new Plateau(nom1,line,column,b);
+            plateau1.fillPlateau();
             plateau2=new Plateau(nom2,line,column,b);
         }
         if(type==3){
