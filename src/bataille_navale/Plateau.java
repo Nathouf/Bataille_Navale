@@ -9,7 +9,7 @@ package bataille_navale;
  *
  * @author Dannemp
  */
-import static bataille_navale.Partide.nom2;
+
 import java.util.Scanner;
     public class Plateau {
         static String name;
@@ -33,6 +33,9 @@ import java.util.Scanner;
        tabB=new Bateau[10];
        int j=-1;
        //filling a table of boats of a specific length 4x2 2x3 2x4 1x6
+            j++;
+                Bateau ba=new Bateau(6);
+                tabB[j]=ba;
             for(int i=1;i<5;i++){
                 j++;
                 Bateau b=new Bateau(2);
@@ -48,10 +51,7 @@ import java.util.Scanner;
                 Bateau b=new Bateau(4);
                 tabB[j]=b;
             }
-            j++;
-                Bateau b=new Bateau(6);
-                tabB[j]=b;
-       
+       affichageRudimentaire();
     }//constructeur pour le type de jeu 1
     public Plateau(String nom,int line,int column, Bateau[] b){
        name=nom;
@@ -62,6 +62,7 @@ import java.util.Scanner;
        tabF=new int[line][column];
        fill0();
        tabB=b;
+       
     }
     public Plateau(String nom,int line,int column){
        name=nom;
@@ -83,7 +84,7 @@ import java.util.Scanner;
     public void affichageRudimentaire(){
         for(int i=0;i<tabF.length;i++){
             for(int j=0;j<tabF[0].length;j++)
-                System.out.print(tabF[i][j]);
+                System.out.print(" "+tabF[i][j]+" ");
             System.out.println();
         }
         System.out.println();
@@ -112,8 +113,9 @@ import java.util.Scanner;
             bol=true;
             if(b.getHorizontal()) for(int i=0;i<b.getLength();i++) tabF[b.getYCoordinate()][b.getXCoordinate()+i]=nr;
             if(!b.getHorizontal()) for(int i=0;i<b.getLength();i++) tabF[b.getYCoordinate()+i][b.getXCoordinate()]=nr;
+            affichageRudimentaire();
         }
-        affichageRudimentaire();
+        
         //System.out.println(emplacementPossible(b));
         return(bol);
     }//positionne le bateau sur le plateau
@@ -139,6 +141,7 @@ import java.util.Scanner;
                             bol=paintField(tabB[i],i+1);
                         }
                 }
+        affichageRudimentaire();
         }
     }//remplie le plateau avec des bateaux
 }
