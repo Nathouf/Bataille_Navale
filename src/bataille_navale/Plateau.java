@@ -12,19 +12,20 @@ package bataille_navale;
 
 import java.util.Scanner;
     public class Plateau {
-        static String name;
-        static int ships;
-        static int type;
-        static int lines;
-        static int columns;
+        private String name;
+        private int ships;
+        private int type;
+        private int lines;
+        private int columns;
         //Le tableau du plateau
-        static int[][] tabF;
+        private int[][] tabF;
         //Le tableau des bateaux
-        static Bateau[] tabB;
+        private Bateau[] tabB;
         Scanner kbd=new Scanner(System.in);
 
     public Plateau(String nom){
        name=nom;
+       //System.out.println(name);
        type=1;
        lines=10;
        columns=10;
@@ -36,9 +37,9 @@ import java.util.Scanner;
             j++;
                 Bateau ba=new Bateau(6);
                 tabB[j]=ba;
-            for(int i=1;i<5;i++){
+            for(int i=1;i<3;i++){
                 j++;
-                Bateau b=new Bateau(2);
+                Bateau b=new Bateau(4);
                 tabB[j]=b;
             }
             for(int i=1;i<4;i++){
@@ -46,9 +47,9 @@ import java.util.Scanner;
                 Bateau b=new Bateau(3);
                 tabB[j]=b;
             }
-            for(int i=1;i<3;i++){
+            for(int i=1;i<5;i++){
                 j++;
-                Bateau b=new Bateau(4);
+                Bateau b=new Bateau(2);
                 tabB[j]=b;
             }
        affichageRudimentaire();
@@ -122,7 +123,7 @@ import java.util.Scanner;
     
     public void fillPlateau(){
         //pour le joueur reel
-        if (name!="ordinateur"){
+        if (!(name.equals("ordinateur"))){
                 for(int i=0;i<tabB.length;i++){
                         boolean bol=false;
                         while(bol==false){
@@ -133,7 +134,7 @@ import java.util.Scanner;
                         }
                 }
         }
-        else {
+        if (name.equals("ordinateur")) {
             for(int i=0;i<tabB.length;i++){
                         boolean bol=false;
                         while(bol==false){
