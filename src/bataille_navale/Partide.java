@@ -39,16 +39,16 @@ public class Partide {
     public void initierPlateau(){
         System.out.println("Introduce S for singleplayer or M for multiplayer");
         String sp_mp=kbd.next();
-        if((sp_mp=="S")||(sp_mp=="s")){
+        if((sp_mp.equals("S"))||(sp_mp.equals("s"))){
             System.out.println("Introduce the name of the first player");
+            nom1=kbd.next();
+            nom2="ordinateur";
+        }
+        if((sp_mp.equals("M"))||(sp_mp.equals("m"))){
+            System.out.println("Introduce the name of the player");
             nom1=kbd.next();
             System.out.println("Introduce the name of the second player");
             nom2=kbd.next();
-        }
-        if((sp_mp=="M")||(sp_mp=="m")){
-            System.out.println("Introduce the name of the player");
-            nom1=kbd.next();
-            nom2="ordinateur";
         }
         System.out.println("Choose the type of game by introducing its number");
         System.out.println("1.rectangular field, 10x10, fixed number of ships");
@@ -71,7 +71,6 @@ public class Partide {
             System.out.println("introduce the number of columns");
             int column=kbd.nextInt();
             boolean bol=false;
-            int test=0;
             int i=0;
             System.out.println("introduce the total number of ships");
             ship=kbd.nextInt();
@@ -91,9 +90,12 @@ public class Partide {
                 }
                     bol=numberOfShipsPossible(b,line,column);
             }
+            System.out.println("Le premier joueur positionne sa flotille");
             plateau1=new Plateau(nom1,line,column,b);
             plateau1.fillPlateau();
+            System.out.println("Le second joueur positionne sa flotille");
             plateau2=new Plateau(nom2,line,column,b);
+            plateau2.fillPlateau();
         }
         if(type==3){
             System.out.println("introduce the number of lines");
