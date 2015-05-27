@@ -98,18 +98,65 @@ public class Partide {
             plateau2.fillPlateau();
         }
         if(type==3){
+            
             System.out.println("introduce the number of lines");
             int line=kbd.nextInt();
             System.out.println("introduce the number of columns");
             int column=kbd.nextInt();
-            plateau1=new Plateau(nom1,line,column);
-            plateau2=new Plateau(nom2,line,column);
+              double caseDispo=line*column;
+            double size=line*column;
+            double ratioSize6=size*0.20689; //Ratio des bateaux
+            double ratioSize4=size*0.27586;
+            double ratioSize3=size*0.31034;
+            double ratioSize2=size*0.20689;
+            int n6=0;
+            int n4=0;
+            int n3=0;
+            int n2=0;
+           while(caseDispo>0){
+            while(((ratioSize6))>6){
+                ratioSize6 = ratioSize6 - 6;
+                caseDispo = caseDispo-6;
+                n6++;
+            }
+             while(((ratioSize4))>4){
+                ratioSize4 = ratioSize4 - 4;
+                caseDispo = caseDispo-4;
+                n4++;
+            }
+             while(((ratioSize3))>3){
+                ratioSize3 = ratioSize3 - 3;
+                caseDispo = caseDispo-4;
+                n3++;
+            }
+             while(((ratioSize2))>0){
+                ratioSize2 = ratioSize2 - 2;
+                caseDispo = caseDispo-2;
+                n2++;
+            }
+           }
+            Bateau bateauRandom[] =new Bateau[n2+n3+n4+n6];
+            for(int i=0; i<n6; i++){
+                bateauRandom[i]=new Bateau(6);
+            //Il faut penser combien des bateaux il nous faut
+            }
+            for(int i=n6; i<n4+n6; i++){
+                bateauRandom[i]=new Bateau(4);
+            }
+            for(int i=n4; i<n3+n4+n6; i++){
+                bateauRandom[i]=new Bateau(3);
+            }
+            for(int i=n3; i<n2+n3+n4+n6; i++){
+                bateauRandom[i]=new Bateau(2);
+            } 
+            plateau1=new Plateau(nom1,line,column,bateauRandom);
+            plateau1.fillPlateau();
+            plateau2=new Plateau(nom2,line,column,bateauRandom);
+            plateau2.fillPlateau();
             //Il faut penser combien des bateaux il nous faut
         }
         //juste pour verifier l'affichage
         //plateau1.affichageRudimentaire();
     }
-    
-    
-    
+        
 }
