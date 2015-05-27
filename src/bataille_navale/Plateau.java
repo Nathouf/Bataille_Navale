@@ -122,21 +122,22 @@ import java.util.Scanner;
         //pour le joueur reel
         if (name!="ordinateur"){
                 for(int i=0;i<tabB.length;i++){
-                    // je pense que la methode que j'ai fait est assez generale donc il y pas la peine de diviser par types
-                    //if (type==1) {
                         boolean bol=false;
                         while(bol==false){
                             if(lines<=26)
                             tabB[i].renseignementsSimples();
                             else tabB[i].renseignementsComplexes();
                             bol=paintField(tabB[i],i+1);
-                        //JUSTE UNE HISTOIRE DE VERIFICATION 
-                        //System.out.println(paintField(tabB[i],i+1));
                         }
-                    /*}
-                    if (type==2){}
-                    if (type==3){}
-                    if (type==4){}*/
+                }
+        }
+        else {
+            for(int i=0;i<tabB.length;i++){
+                        boolean bol=false;
+                        while(bol==false){
+                            tabB[i].renseignementsOrdinateur();
+                            bol=paintField(tabB[i],i+1);
+                        }
                 }
         }
     }//remplie le plateau avec des bateaux
