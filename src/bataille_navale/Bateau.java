@@ -132,7 +132,7 @@ public class Bateau {
     }//se renseigne pour un bateau en coordonees sans letres
     
     public void renseignementsOrdinateur(int lines, int columns){
-        int orient=rnd.nextInt(1);
+        int orient=rnd.nextInt(2);
         setPositionOrdi(orient);
         int xC=rnd.nextInt(columns-1);
         int xL=rnd.nextInt(lines-1);
