@@ -135,7 +135,7 @@ import java.util.Scanner;
             for(int i=0;i<tabB.length;i++){
                         boolean bol=false;
                         while(bol==false){
-                            tabB[i].renseignementsOrdinateur();
+                            tabB[i].renseignementsOrdinateur(lines,columns);
                             bol=paintField(tabB[i],i+1);
                         }
                 }
