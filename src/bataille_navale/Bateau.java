@@ -62,11 +62,20 @@ public class Bateau {
     }
     
     public void setCoordinatesSimple(String S){
-        int l=(int)(S.charAt(0))-(int)('A');
+        int l=0;
+        if ((S.charAt(0)>='A')&&(S.charAt(0)<='Z'))
+            l=(int)(S.charAt(0))-(int)('A');
+        if ((S.charAt(0)>='a')&&(S.charAt(0)<='z'))
+            l=(int)(S.charAt(0))-(int)('a');
         String temp=S.substring(1,S.length());
         int c=Integer.valueOf(temp)-1;
         yCoordinate=l;
         xCoordinate=c;
+    }
+    
+    public void setCoordinatesComplexes(int l, int c){
+        yCoordinate=l-1;
+        xCoordinate=c-1;
     }
     
     public boolean setPosition(String S){
@@ -89,11 +98,25 @@ public class Bateau {
                 System.out.println("Bateau de taille "+length+". Donner l'orientation, H pour horizontale et V pour verticale.");
                 String S=kbd.next();
                 bol=setPosition(S);
-                System.out.println("Bateau de taille "+length+". Donner les coordones du bateau.");
+                System.out.println("Bateau de taille "+length+". Donner les coordones du bateau.(de forme A4)");
                 String SC=kbd.next();
                 setCoordinatesSimple(SC);
             }
-        
+    }
+    
+    public void renseignementsComplexes(){
+        boolean bol=false;
+            while(bol==false){
+                System.out.println("Bateau de taille "+length+". Donner l'orientation, H pour horizontale et V pour verticale.");
+                String S=kbd.next();
+                bol=setPosition(S);
+                System.out.println("Bateau de taille "+length+". Donner les coordones du bateau.");
+                System.out.println("Premierement la ligne.");
+                int lin=kbd.nextInt();
+                System.out.println("Maintenant la colonne.");
+                int col=kbd.nextInt();
+                setCoordinatesComplexes(lin,col);
+            }
     }
     
     public boolean tir(int x, int y){
