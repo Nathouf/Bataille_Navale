@@ -11,6 +11,7 @@ package bataille_navale;
  */
 
 import java.util.Scanner;
+import java.util.Random;
 public class Bateau {
     private int length;
     private int state;
@@ -22,6 +23,7 @@ public class Bateau {
     private boolean dHorizontal;
     // si le bateau horizontal alors true
     Scanner kbd=new Scanner(System.in);
+    Random rnd = new Random();
     
     public Bateau(int ligne,int colonne, int longeur,boolean horizontal){
         length=longeur;
@@ -104,6 +106,16 @@ public class Bateau {
             }
     }//se renseigne pour un bateau en coordonees avec lettres
     
+    public void setPositionOrdi(int o){
+        if(o==1) dHorizontal=true;
+        if(o==0) dHorizontal=false;
+    }
+    
+    public void setCoordinatesOrdi(int yC,int xC){
+        yCoordinate=yC;
+        xCoordinate=xC;
+    }
+    
     public void renseignementsComplexes(){
         boolean bol=false;
             while(bol==false){
@@ -119,8 +131,12 @@ public class Bateau {
             }
     }//se renseigne pour un bateau en coordonees sans letres
     
-    public void renseignementsOrdinateur(){
-        
+    public void renseignementsOrdinateur(int lines, int columns){
+        int orient=rnd.nextInt(1);
+        setPositionOrdi(orient);
+        int xC=rnd.nextInt(columns-1);
+        int xL=rnd.nextInt(lines-1);
+        setCoordinatesOrdi(xL,xC);
     }
     
     public boolean tir(int x, int y){
