@@ -73,22 +73,23 @@ public class Partide {
             boolean bol=false;
             int test=0;
             int i=0;
-            // ici il y a une histoire d'initialisation du tableau...
-            Bateau[] b;
+            System.out.println("introduce the total number of ships");
+            ship=kbd.nextInt();
+            Bateau[] b=new Bateau[ship];
             while((bol==false)){
-                do{
-                    System.out.println("introduce the length and then the number of ships of that length that you want to have, introduce -1 to stop");
+                while(i<ship){
+                    System.out.println("introduce the length and then the number of ships of that length that you want to have");
                     System.out.println("introduce the length");
                     int givenLength=kbd.nextInt();
-                    test=givenLength;
-                    System.out.println("introduce the number of ships of this length");
+                    System.out.println("introduce the number of ships of this length, you can place "+(ship-i)+" more ships");
                     int nrLength=kbd.nextInt();
                     int k=i;
-                    i=i+nrLength;
-                    for(int j=k;j<=i;j++)
+                    if (i+nrLength<=ship)i=i+nrLength;
+                    else i=ship;
+                    for(int j=k;j<i;j++)
                        b[j]=new Bateau(givenLength);
+                }
                     bol=numberOfShipsPossible(b,line,column);
-                }while((test!=-1));
             }
             plateau1=new Plateau(nom1,line,column,b);
             plateau2=new Plateau(nom2,line,column,b);
