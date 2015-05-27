@@ -12,12 +12,12 @@ package bataille_navale;
 import java.util.Scanner;
 public class Partide {
     Scanner kbd=new Scanner(System.in);
-    static String nom1;
-    static String nom2;
-    static int type;
-    static Plateau plateau1;
-    static Plateau plateau2;
-    static int ship;
+    private String nom1;
+    private String nom2;
+    private int type;
+    private Plateau plateau1;
+    private Plateau plateau2;
+    private int ship;
     
     public Partide(){}
     
