@@ -9,7 +9,7 @@ package bataille_navale;
  *
  * @author Dannemp
  */
- //COmmit try 
+
 import java.util.Scanner;
 public class Bateau {
     private int length;
@@ -71,12 +71,12 @@ public class Bateau {
         int c=Integer.valueOf(temp)-1;
         yCoordinate=l;
         xCoordinate=c;
-    }
+    } //pour mettre un bateau a partir des coordones comme A4 ou c10
     
     public void setCoordinatesComplexes(int l, int c){
         yCoordinate=l-1;
         xCoordinate=c-1;
-    }
+    }//pour mettre un bateau a partir des coordones sans lettres;
     
     public boolean setPosition(String S){
         boolean corect=false;
@@ -90,7 +90,7 @@ public class Bateau {
         }
         else System.out.println("vous n'avez pas introduit corectement");
         return(corect);
-    }
+    }//pose l'horientation du bateau
     
     public void renseignementsSimples(){
         boolean bol=false;
@@ -102,7 +102,7 @@ public class Bateau {
                 String SC=kbd.next();
                 setCoordinatesSimple(SC);
             }
-    }
+    }//se renseigne pour un bateau en coordonees avec lettres
     
     public void renseignementsComplexes(){
         boolean bol=false;
@@ -117,6 +117,10 @@ public class Bateau {
                 int col=kbd.nextInt();
                 setCoordinatesComplexes(lin,col);
             }
+    }//se renseigne pour un bateau en coordonees sans letres
+    
+    public void renseignementsOrdinateur(){
+        
     }
     
     public boolean tir(int x, int y){
