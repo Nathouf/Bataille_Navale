@@ -62,6 +62,9 @@ public class Bateau {
     public int getLength(){
         return(length);
     }
+    public int getState(){
+        return(state);
+    }
     
     public void setCoordinatesSimple(String S){
         int l=0;
