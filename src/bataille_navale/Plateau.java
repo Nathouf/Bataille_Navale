@@ -126,9 +126,8 @@ import java.util.Scanner;
             if(!b.getHorizontal()) 
                 for(int i=0;i<b.getLength();i++) 
                     tabF[b.getYCoordinate()+i][b.getXCoordinate()]=nr;
-            affichageRudimentaire();
         }
-        
+        //affichageRudimentaire();
         //System.out.println(emplacementPossible(b));
         return(bol);
     }//positionne le bateau sur le plateau
