@@ -191,5 +191,23 @@ public class Partide {
             
         }
     }//initie les plateaux
-        
+    
+    public int calculeNrJoueursVivants(){
+        int nr=0;
+        for(int i=0;i<tabPlateaux.length;i++){
+            if (tabPlateaux[i].isLiving()) nr++;                    
+        }
+        return nr;
+    }
+    
+    public void jouer(){
+        int nombreJoueursVivants=calculeNrJoueursVivants();
+        while(nombreJoueursVivants>1)
+            
+            for(int i=0;i<tabPlayers.length;i++){
+                if (nrPlayers==2);
+                else System.out.println("Le joueur "+tabPlayers[i]+" choisit sa cible. Introduisez le nombre de votre cible.");
+                
+            }
+    }
 }
