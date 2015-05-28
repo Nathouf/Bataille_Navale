@@ -33,8 +33,10 @@ public class Partide {
     
     public void single_multi(){
         tabPlayers=new String[2];
-        System.out.println("Introduce S for singleplayer or M for multiplayer");
-        String sp_mp=kbd.next();
+        while((!(sp_mp.equals("S"))&&!sp_mp.equals("s")&&!sp_mp.equals("m")&&!sp_mp.equals("M"))){
+            System.out.println("Introduce S for singleplayer or M for multiplayer");
+            sp_mp=kbd.nextLine();  
+        }
         if((sp_mp.equals("S"))||(sp_mp.equals("s"))){
             tabPlayers=new String[2];
             System.out.println("Introduce the name of the first player");
