@@ -10,6 +10,7 @@ package bataille_navale;
  * @author Dannemp
  */
 import java.util.Scanner;
+import java.util.Random;
 public class Partide {
     Scanner kbd=new Scanner(System.in);
     private int type;
@@ -17,8 +18,10 @@ public class Partide {
     private int nrPlayers;
     private int xCoordinate;
     private int yCoordinate;
+    private int difficulte;
     private String[] tabPlayers;
     private Plateau[] tabPlateaux;
+    Random rnd = new Random();
     
     
     public Partide(){}
@@ -58,6 +61,13 @@ public class Partide {
             tabPlateaux=new Plateau[nrPlayers];
         }
     }//demande si le jeu est singleplayer ou multiplayer
+    
+    public void difficulteAi(){
+        System.out.println("Choose the inteligence of the AI by introducing its number");
+        System.out.println("1.completely random");
+        System.out.println("2.smart choices");
+        difficulte=kbd.nextInt();
+    }
     
     public void typeDeJeu(){
         System.out.println("Choose the type of game by introducing its number");
@@ -229,23 +239,68 @@ public class Partide {
         }
     }
     
+    public void donnerCoordonesTirAleatoire(int line,int column){
+        yCoordinate=rnd.nextInt(line);
+        xCoordinate=rnd.nextInt(column);
+    }
+    
+    public void tirOrdinateur(Plateau p){
+        if (difficulte==1) {
+            donnerCoordonesTirAleatoire(p.getLines(),p.getColumns());
+            p.tirerDessus(yCoordinate,xCoordinate);
+        }
+    }
+    
     public void jouer(){
         int nombreJoueursVivants=calculeNrJoueursVivants();
-        while(nombreJoueursVivants>1)
-            
-            for(int i=0;i<tabPlayers.length;i++){
-                if (nrPlayers==2);//pour une partide single player
-                else{
+        while(nombreJoueursVivants>1){
+            int i=-1;
+            if (nrPlayers==2){
+                while(i<tabPlayers.length){
+                    i++;
                     if (!tabPlayers[i].equals("ordinateur")){
-                        System.out.println("Le joueur "+tabPlayers[i]+" choisit sa cible. Introduisez le nombre de votre cible.");
-                        int cible=kbd.nextInt();//faut changer
-                        donnerCoordonesTir(tabPlateaux[cible]);
-                        tabPlateaux[cible].tirerDessus(yCoordinate,xCoordinate);
+                        System.out.println("Le joueur "+tabPlayers[i]+" tire");
+                        if (i==0){
+                        donnerCoordonesTir(tabPlateaux[1]);
+                        boolean bol=false;
+                            while(bol==false){
+                                bol=tabPlateaux[1].tirerDessus(yCoordinate,xCoordinate);
+                            }
+                        }
+                        else{
+                            donnerCoordonesTir(tabPlateaux[0]);
+                            boolean bol=false;
+                            while(bol==false){
+                                bol=tabPlateaux[0].tirerDessus(yCoordinate,xCoordinate);
+                            }
+                        }
                         
                     }
-                    else ;//pour un ordinateur
+                    //pour l'ordinateur
+                    else {
+                        tirOrdinateur();
+                    }
+                }
+            }//pour une partide 2 player
+            else{
+                while(i<tabPlayers.length){
+                    i++;
+                    if (tabPlateaux[i].isLiving()){
+                        if (!tabPlayers[i].equals("ordinateur")){
+                            System.out.println("Le joueur "+tabPlayers[i]+" choisit sa cible. Introduisez le nombre de votre cible.");
+                            int cible=kbd.nextInt();//faut changer
+                            donnerCoordonesTir(tabPlateaux[cible-1]);
+                            boolean bol=false;
+                            while(bol==false){
+                                bol=tabPlateaux[cible].tirerDessus(yCoordinate,xCoordinate);
+                            }
+                        }
+                        else ;//pour un ordinateur
+                    }
+                    else i=i;//si le joueur n'est pas vivant on passe son tour;
                 }
                 
-            }
+            }//pour une partide plusieurs players
+        }
     }
 }
