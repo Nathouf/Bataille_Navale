@@ -12,11 +12,7 @@ package bataille_navale;
 import java.util.Scanner;
 public class Partide {
     Scanner kbd=new Scanner(System.in);
-    private String nom1;
-    private String nom2;
     private int type;
-    private Plateau plateau1;
-    private Plateau plateau2;
     private int ship;
     private int nrPlayers;
     private String[] tabPlayers;
@@ -24,11 +20,6 @@ public class Partide {
     
     
     public Partide(){}
-    
-    public String getNom1(){
-    return nom1;}
-    public String getNom2(){
-    return nom2;}
     
     public boolean numberOfShipsPossible(Bateau[] b, int lignes, int colonnes){
         boolean bol=false;
@@ -38,7 +29,7 @@ public class Partide {
             Cas=Cas+b[i].getLength();
         if (Cas<=Max) bol=true;
         return(bol);
-    }
+    }//rends true si un tel nombre des bateaux est possible
     
     public void single_multi(){
         tabPlayers=new String[2];
@@ -56,12 +47,12 @@ public class Partide {
             nrPlayers=kbd.nextInt();
             tabPlayers=new String[nrPlayers];
             for(int i=0;i<tabPlayers.length;i++){
-                System.out.println("Introduce the name of the player"+i);
+                System.out.println("Introduce the name of the player"+(i+1));
                 tabPlayers[i]=kbd.next();
             }
             tabPlateaux=new Plateau[nrPlayers];
         }
-    }
+    }//demande si le jeu est singleplayer ou multiplayer
     
     public void typeDeJeu(){
         System.out.println("Choose the type of game by introducing its number");
@@ -70,7 +61,7 @@ public class Partide {
         System.out.println("3.rectangular field, any dimensions, fixed number of ships");
         System.out.println("4.triangular field, fixed number of ships");
         type=kbd.nextInt();
-    }
+    }//demande le type de jeu
     
     public void quickSort(int left,int right,Bateau[] b){ 
         int l=left,r=right; 
@@ -95,7 +86,7 @@ public class Partide {
             quickSort(left,r,b); 
         if(l<right) 
             quickSort(l,right,b); 
-    }
+    }//sorte le tableau des bateaux
     
     public void initierPlateau(){
         if(type==1){
@@ -112,11 +103,12 @@ public class Partide {
             System.out.println("introduce the number of columns");
             int column=kbd.nextInt();
             boolean bol=false;
-            int i=0;
+            
             System.out.println("introduce the total number of ships");
             ship=kbd.nextInt();
             Bateau[] b=new Bateau[ship];
             while((bol==false)){
+                int i=0;
                 while(i<ship){
                     System.out.println("introduce the length and then the number of ships of that length that you want to have");
                     System.out.println("introduce the length");
@@ -145,7 +137,7 @@ public class Partide {
             int column=kbd.nextInt();
            
            
-            double caseDispo=line*column*0.29;
+            double caseDispo=line*column*0.35;
             double size=caseDispo;
             double ratioSize6=size*0.30689; //Ratio des bateaux
             double ratioSize4=size*0.4;
@@ -180,7 +172,7 @@ public class Partide {
             Bateau bateauRandom[] =new Bateau[n2+n3+n4+n6];
             for(int i=0; i<n6; i++){
                 bateauRandom[i]=new Bateau(6);
-            //Il faut penser combien des bateaux il nous faut
+            
             }
             for(int i=n6; i<n4+n6; i++){
                 bateauRandom[i]=new Bateau(4);
@@ -191,12 +183,13 @@ public class Partide {
             for(int i=n3+n4+n6; i<n2+n3+n4+n6; i++){
                 bateauRandom[i]=new Bateau(2);
             } 
-            plateau1=new Plateau(nom1,line,column,bateauRandom);
-            plateau1.fillPlateau();
-            plateau2=new Plateau(nom2,line,column,bateauRandom);
-            plateau2.fillPlateau();
-            //Il faut penser combien des bateaux il nous faut
+            for(int j=0;j<tabPlayers.length;j++){
+                tabPlateaux[j]=new Plateau(tabPlayers[j],line,column,bateauRandom);
+                System.out.println(tabPlayers[j]+" le joueur "+(j+1)+" positionne sa flotille");
+                tabPlateaux[j].fillPlateau();
+            }
+            
         }
-    }
+    }//initie les plateaux
         
 }
