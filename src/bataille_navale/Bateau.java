@@ -15,7 +15,7 @@ import java.util.Random;
 public class Bateau {
     private int length;
     private int state;
-    //l'etat 1 designe indemne, 2 touce, 3 coule;
+    //l'etat 1 designe indemne, 2 touche, 3 coule;
     private int xCoordinate;
     private int yCoordinate;
     private int nrTouches;
