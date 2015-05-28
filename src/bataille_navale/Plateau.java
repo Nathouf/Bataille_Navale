@@ -166,4 +166,11 @@ import java.util.Scanner;
         return(bol);
     }
     
+    public void tirerDessus(int l, int c){
+        if(tabF[l][c]>0) {
+            if(tabB[tabF[l][c]].tir(l,c)) 
+                if (tabB[tabF[l][c]].getState()!=3) tabF[l][c]=-2;
+        }
+    }
+    
 }
