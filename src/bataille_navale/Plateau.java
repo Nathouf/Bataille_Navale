@@ -127,7 +127,7 @@ import java.util.Scanner;
                 for(int i=0;i<b.getLength();i++) 
                     tabF[b.getYCoordinate()+i][b.getXCoordinate()]=nr;
         }
-        //affichageRudimentaire();
+        affichageRudimentaire();
         //System.out.println(emplacementPossible(b));
         return(bol);
     }//positionne le bateau sur le plateau
@@ -165,12 +165,28 @@ import java.util.Scanner;
         vivant=bol;
         return(bol);
     }
-    
-    public void tirerDessus(int l, int c){
+    public void paintDead(Bateau b){
+        if(b.getHorizontal()) 
+            for(int i=0;i<b.getLength();i++) 
+                tabF[b.getYCoordinate()][b.getXCoordinate()+i]=-3;
+        if(!b.getHorizontal()) 
+            for(int i=0;i<b.getLength();i++) 
+                tabF[b.getYCoordinate()+i][b.getXCoordinate()]=-3;
+    }
+    public boolean tirerDessus(int l, int c){
+        boolean bol=false;
         if(tabF[l][c]>0) {
-            if(tabB[tabF[l][c]].tir(l,c)) 
-                if (tabB[tabF[l][c]].getState()!=3) tabF[l][c]=-2;
+            bol=true;
+            if(tabB[tabF[l][c]].tir(l,c)) {
+                if (tabB[tabF[l][c]].getState()==2) tabF[l][c]=-2;
+                if (tabB[tabF[l][c]].getState()==3) paintDead(tabB[tabF[l][c]]);
+            }
         }
+        if (tabF[l][c]==0){
+            bol=true;
+            tabF[l][c]=-1;
+        }
+        return(bol);
     }
     
 }
