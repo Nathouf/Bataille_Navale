@@ -18,6 +18,10 @@ public class Partide {
     private Plateau plateau1;
     private Plateau plateau2;
     private int ship;
+    private int nrPlayers;
+    private String[] tabPlayers;
+    private Plateau[] tabPlateaux;
+    
     
     public Partide(){}
     
@@ -36,34 +40,71 @@ public class Partide {
         return(bol);
     }
     
-    public void initierPlateau(){
+    public void single_multi(){
+        tabPlayers=new String[2];
         System.out.println("Introduce S for singleplayer or M for multiplayer");
         String sp_mp=kbd.next();
         if((sp_mp.equals("S"))||(sp_mp.equals("s"))){
+            tabPlayers=new String[2];
             System.out.println("Introduce the name of the first player");
-            nom1=kbd.next();
-            nom2="ordinateur";
+            tabPlayers[0]=kbd.next();
+            tabPlayers[1]="ordinateur";
+            tabPlateaux=new Plateau[2];
         }
         if((sp_mp.equals("M"))||(sp_mp.equals("m"))){
-            System.out.println("Introduce the name of the player");
-            nom1=kbd.next();
-            System.out.println("Introduce the name of the second player");
-            nom2=kbd.next();
+            System.out.println("introduce the number of players");
+            nrPlayers=kbd.nextInt();
+            tabPlayers=new String[nrPlayers];
+            for(int i=0;i<tabPlayers.length;i++){
+                System.out.println("Introduce the name of the player"+i);
+                tabPlayers[i]=kbd.next();
+            }
+            tabPlateaux=new Plateau[nrPlayers];
         }
+    }
+    
+    public void typeDeJeu(){
         System.out.println("Choose the type of game by introducing its number");
         System.out.println("1.rectangular field, 10x10, fixed number of ships");
         System.out.println("2.rectangular field, any dimensions, any number of ships ");
         System.out.println("3.rectangular field, any dimensions, fixed number of ships");
         System.out.println("4.triangular field, fixed number of ships");
         type=kbd.nextInt();
+    }
+    
+    public void quickSort(int left,int right,Bateau[] b){ 
+        int l=left,r=right; 
+        int pivot=b[(left+right)/2].getLength(); 
+        /*int pivot=tab[left];*/ 
+        do{ 
+            while ((l<right)&&(b[l].getLength()>pivot)){
+                l=l+1;
+            } 
+            while ((r>left)&&(b[r].getLength()<pivot)){
+                r=r-1;
+            } 
+            if (l<=r){ 
+                Bateau aux=b[l]; 
+                b[l]=b[r]; 
+                b[r]=aux; 
+                l=l+1; 
+                r=r-1; 
+            } 
+        } while(l<r); 
+        if(left<r) 
+            quickSort(left,r,b); 
+        if(l<right) 
+            quickSort(l,right,b); 
+    }
+    
+    public void initierPlateau(){
         if(type==1){
-            plateau1=new Plateau(nom1);
-            plateau2=new Plateau(nom2);
+            for(int i=0;i<tabPlayers.length;i++){
+                tabPlateaux[i]=new Plateau(tabPlayers[i]);
+                System.out.println(tabPlayers[i]+" le joueur "+(i+1)+" positionne sa flotille");
+                tabPlateaux[i].fillPlateau();
+            }
             ship=10;
-            System.out.println("Le premier joueur positionne sa flotille");
-            plateau1.fillPlateau();
-            System.out.println("Le second joueur positionne sa flotille");
-            plateau2.fillPlateau();
         }
         if(type==2){
             System.out.println("introduce the number of lines");
@@ -88,14 +129,14 @@ public class Partide {
                     for(int j=k;j<i;j++)
                        b[j]=new Bateau(givenLength);
                 }
+                    quickSort(0,b.length-1,b);
                     bol=numberOfShipsPossible(b,line,column);
             }
-            System.out.println("Le premier joueur positionne sa flotille");
-            plateau1=new Plateau(nom1,line,column,b);
-            plateau1.fillPlateau();
-            System.out.println("Le second joueur positionne sa flotille");
-            plateau2=new Plateau(nom2,line,column,b);
-            plateau2.fillPlateau();
+            for(int j=0;j<tabPlayers.length;j++){
+                tabPlateaux[j]=new Plateau(tabPlayers[j],line,column,b);
+                System.out.println(tabPlayers[j]+" le joueur "+(j+1)+" positionne sa flotille");
+                tabPlateaux[j].fillPlateau();
+            }
         }
         if(type==3){
             
