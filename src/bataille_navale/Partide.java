@@ -200,13 +200,22 @@ public class Partide {
         return nr;
     }
     
+    public void donnerCoordonesTir(Plateau p){
+        if (p.getLines()<26)
+        System.out.println("Donnez les coordonnees de votre tir (format A4)");
+        
+    }
+    
     public void jouer(){
         int nombreJoueursVivants=calculeNrJoueursVivants();
         while(nombreJoueursVivants>1)
             
             for(int i=0;i<tabPlayers.length;i++){
                 if (nrPlayers==2);
-                else System.out.println("Le joueur "+tabPlayers[i]+" choisit sa cible. Introduisez le nombre de votre cible.");
+                else{
+                    System.out.println("Le joueur "+tabPlayers[i]+" choisit sa cible. Introduisez le nombre de votre cible.");
+                    int cible=kbd.nextInt();
+                }
                 
             }
     }
