@@ -17,6 +17,7 @@ import java.util.Scanner;
         private int type;
         private int lines;
         private int columns;
+        private boolean vivant;
         //Le tableau du plateau
         private int[][] tabF;
         //Le tableau des bateaux
@@ -145,4 +146,14 @@ import java.util.Scanner;
         affichageRudimentaire();
         }
     }//remplie le plateau avec des bateaux
+    
+    public boolean isLiving(){
+        boolean bol=false;
+        for(int i=0;i<tabF.length;i++)
+            for(int j=0;j<tabF[0].length;j++)
+                if (tabF[i][j]>0) bol=true;
+        vivant=bol;
+        return(bol);
+    }
+    
 }
