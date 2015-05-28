@@ -234,11 +234,16 @@ public class Partide {
         while(nombreJoueursVivants>1)
             
             for(int i=0;i<tabPlayers.length;i++){
-                if (nrPlayers==2);
+                if (nrPlayers==2);//pour une partide single player
                 else{
-                    System.out.println("Le joueur "+tabPlayers[i]+" choisit sa cible. Introduisez le nombre de votre cible.");
-                    int cible=kbd.nextInt();//faut changer
-                    donnerCoordonesTir(tabPlateaux[cible]);
+                    if (!tabPlayers[i].equals("ordinateur")){
+                        System.out.println("Le joueur "+tabPlayers[i]+" choisit sa cible. Introduisez le nombre de votre cible.");
+                        int cible=kbd.nextInt();//faut changer
+                        donnerCoordonesTir(tabPlateaux[cible]);
+                        tabPlateaux[cible].tirerDessus(yCoordinate,xCoordinate);
+                        
+                    }
+                    else ;//pour un ordinateur
                 }
                 
             }
