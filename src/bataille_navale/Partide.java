@@ -15,6 +15,8 @@ public class Partide {
     private int type;
     private int ship;
     private int nrPlayers;
+    private int xCoordinate;
+    private int yCoordinate;
     private String[] tabPlayers;
     private Plateau[] tabPlateaux;
     
@@ -33,6 +35,7 @@ public class Partide {
     
     public void single_multi(){
         tabPlayers=new String[2];
+        String sp_mp="";
         while((!(sp_mp.equals("S"))&&!sp_mp.equals("s")&&!sp_mp.equals("m")&&!sp_mp.equals("M"))){
             System.out.println("Introduce S for singleplayer or M for multiplayer");
             sp_mp=kbd.nextLine();  
@@ -130,6 +133,7 @@ public class Partide {
                 tabPlateaux[j]=new Plateau(tabPlayers[j],line,column,b);
                 System.out.println(tabPlayers[j]+" le joueur "+(j+1)+" positionne sa flotille");
                 tabPlateaux[j].fillPlateau();
+                
             }
         }
          if(type==3){
@@ -203,9 +207,26 @@ public class Partide {
     }
     
     public void donnerCoordonesTir(Plateau p){
-        if (p.getLines()<26)
-        System.out.println("Donnez les coordonnees de votre tir (format A4)");
-        
+        if (p.getLines()<26){
+            System.out.println("Donnez les coordonnees de votre tir (format A4)");//faut changer
+            String S=kbd.next();
+            int l=0;
+            if ((S.charAt(0)>='A')&&(S.charAt(0)<='Z'))
+                l=(int)(S.charAt(0))-(int)('A');
+            if ((S.charAt(0)>='a')&&(S.charAt(0)<='z'))
+                l=(int)(S.charAt(0))-(int)('a');
+            String temp=S.substring(1,S.length());
+            int c=Integer.valueOf(temp)-1;
+            yCoordinate=l;
+            xCoordinate=c;
+        }
+        else {
+            System.out.println("Donnez les coordonnees de votre tir (format 14 27)");
+            System.out.println("Premierement la ligne.");
+            yCoordinate=kbd.nextInt();
+            System.out.println("Maintenant la colonne.");
+            xCoordinate=kbd.nextInt();
+        }
     }
     
     public void jouer(){
@@ -216,7 +237,8 @@ public class Partide {
                 if (nrPlayers==2);
                 else{
                     System.out.println("Le joueur "+tabPlayers[i]+" choisit sa cible. Introduisez le nombre de votre cible.");
-                    int cible=kbd.nextInt();
+                    int cible=kbd.nextInt();//faut changer
+                    donnerCoordonesTir(tabPlateaux[cible]);
                 }
                 
             }
