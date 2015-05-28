@@ -63,7 +63,7 @@ public class Partide {
         System.out.println("Choose the type of game by introducing its number");
         System.out.println("1.rectangular field, 10x10, fixed number of ships");
         System.out.println("2.rectangular field, any dimensions, any number of ships ");
-        System.out.println("3.rectangular field, any dimensions, fixed number of ships");
+        System.out.println("3.rectangular field, 6x6 and above, fixed number of ships");
         System.out.println("4.triangular field, fixed number of ships");
         type=kbd.nextInt();
     }//demande le type de jeu
