@@ -77,6 +77,13 @@ import java.util.Scanner;
        //for(i=0;i<5;i++)
     }
     
+    public int getLines(){
+        return lines;
+    }
+    public int getColumns(){
+        return columns;
+    }
+    
     public void fill0(){
         for(int i=0;i<tabF.length;i++)
             for(int j=0;j<tabF[0].length;j++)
@@ -113,8 +120,12 @@ import java.util.Scanner;
         boolean bol=false;
         if (emplacementPossible(b)){
             bol=true;
-            if(b.getHorizontal()) for(int i=0;i<b.getLength();i++) tabF[b.getYCoordinate()][b.getXCoordinate()+i]=nr;
-            if(!b.getHorizontal()) for(int i=0;i<b.getLength();i++) tabF[b.getYCoordinate()+i][b.getXCoordinate()]=nr;
+            if(b.getHorizontal()) 
+                for(int i=0;i<b.getLength();i++) 
+                    tabF[b.getYCoordinate()][b.getXCoordinate()+i]=nr;
+            if(!b.getHorizontal()) 
+                for(int i=0;i<b.getLength();i++) 
+                    tabF[b.getYCoordinate()+i][b.getXCoordinate()]=nr;
             affichageRudimentaire();
         }
         
