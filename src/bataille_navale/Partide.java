@@ -49,6 +49,7 @@ public class Partide {
             tabPlayers[0]=kbd.next();
             tabPlayers[1]="ordinateur";
             tabPlateaux=new Plateau[2];
+            nrPlayers=2;
         }
         if((sp_mp.equals("M"))||(sp_mp.equals("m"))){
             System.out.println("introduce the number of players");
@@ -233,9 +234,9 @@ public class Partide {
         else {
             System.out.println("Donnez les coordonnees de votre tir (format 14 27)");
             System.out.println("Premierement la ligne.");
-            yCoordinate=kbd.nextInt();
+            yCoordinate=kbd.nextInt()-1;
             System.out.println("Maintenant la colonne.");
-            xCoordinate=kbd.nextInt();
+            xCoordinate=kbd.nextInt()-1;
         }
     }
     
@@ -245,29 +246,32 @@ public class Partide {
     }
     
     public void tirOrdinateur(Plateau p){
-        if (difficulte==1) {
-            donnerCoordonesTirAleatoire(p.getLines(),p.getColumns());
-            p.tirerDessus(yCoordinate,xCoordinate);
+        boolean bol = false;
+        while (bol == false) {
+            if (difficulte == 1) {
+                donnerCoordonesTirAleatoire(p.getLines(), p.getColumns());
+            }
+            bol = p.tirerDessus(yCoordinate, xCoordinate);
         }
     }
     
-    public void jouer(){
+    public void jouerADeux(){
         int nombreJoueursVivants=calculeNrJoueursVivants();
+        int j;
         while(nombreJoueursVivants>1){
-            int i=-1;
-            if (nrPlayers==2){
-                while(i<tabPlayers.length){
-                    i++;
-                    if (!tabPlayers[i].equals("ordinateur")){
-                        System.out.println("Le joueur "+tabPlayers[i]+" tire");
-                        if (i==0){
+            j=-1;
+            while(j<1){
+                    j++;
+                    if (!tabPlayers[j].equals("ordinateur")){
+                        System.out.println("Le joueur "+tabPlayers[j]+" tire");
+                        if (j==0){
                         donnerCoordonesTir(tabPlateaux[1]);
                         boolean bol=false;
                             while(bol==false){
                                 bol=tabPlateaux[1].tirerDessus(yCoordinate,xCoordinate);
                             }
                         }
-                        else{
+                        if(j==1){
                             donnerCoordonesTir(tabPlateaux[0]);
                             boolean bol=false;
                             while(bol==false){
@@ -278,11 +282,24 @@ public class Partide {
                     }
                     //pour l'ordinateur
                     else {
-                        tirOrdinateur();
+                        if (j==0){
+                            System.out.println("l'ordi1 tire");
+                            tirOrdinateur(tabPlateaux[1]);
+                        }
+                        if (j==1) {
+                            System.out.println("l'ordi2 tire");
+                            tirOrdinateur(tabPlateaux[0]);
+                        }
                     }
-                }
-            }//pour une partide 2 player
-            else{
+            }
+        nombreJoueursVivants=calculeNrJoueursVivants();
+        }
+    }
+    
+    public void jouer(){
+        int nombreJoueursVivants=calculeNrJoueursVivants();
+        if (nrPlayers==2) jouerADeux();
+            /*else{
                 while(i<tabPlayers.length){
                     i++;
                     if (tabPlateaux[i].isLiving()){
@@ -299,8 +316,8 @@ public class Partide {
                     }
                     else i=i;//si le joueur n'est pas vivant on passe son tour;
                 }
-                
+            nombreJoueursVivants=calculeNrJoueursVivants();    
             }//pour une partide plusieurs players
-        }
+        }*/
     }
 }
