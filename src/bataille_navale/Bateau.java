@@ -148,7 +148,7 @@ public class Bateau {
             touche=true;
             nrTouches=nrTouches+1;
         }
-        else if((x==xCoordinate)&&(y>=yCoordinate)&&(y<=yCoordinate+length)){
+        else if((!dHorizontal)&&(x==xCoordinate)&&(y>=yCoordinate)&&(y<=yCoordinate+length)){
             touche=true;
             nrTouches=nrTouches+1;
         }
