@@ -175,17 +175,24 @@ import java.util.Scanner;
     }
     public boolean tirerDessus(int l, int c){
         boolean bol=false;
+        int ligne=l;
+        int colonne=c;
+        int nr=tabF[l][c]-1;
         if(tabF[l][c]>0) {
             bol=true;
-            if(tabB[tabF[l][c]].tir(l,c)) {
-                if (tabB[tabF[l][c]].getState()==2) tabF[l][c]=-2;
-                if (tabB[tabF[l][c]].getState()==3) paintDead(tabB[tabF[l][c]]);
+            if(tabB[nr].tir(l,c)) {
+                if (tabB[nr].getState()==2) tabF[ligne][colonne]=-2;
+                else if (tabB[nr].getState()==3) paintDead(tabB[nr]);
+                
+                
             }
         }
         if (tabF[l][c]==0){
             bol=true;
             tabF[l][c]=-1;
         }
+        if (bol==true)
+            affichageRudimentaire();
         return(bol);
     }
     
