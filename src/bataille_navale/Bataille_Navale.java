@@ -18,9 +18,10 @@ public class Bataille_Navale {
     public static void main(String[] args) {
         Partide p1=new Partide();
         p1.single_multi();
+        p1.difficulteAi();
         p1.typeDeJeu();
         p1.initierPlateau();
-        
+        p1.jouer();
     }
     
 }
