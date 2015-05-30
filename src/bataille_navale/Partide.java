@@ -16,8 +16,8 @@ public class Partide {
     private int type;
     private int ship;
     private int nrPlayers;
-    private int xCoordinate;
-    private int yCoordinate;
+    private int xCoord;
+    private int yCoord;
     private int difficulte;
     private String[] tabPlayers;
     private Plateau[] tabPlateaux;
@@ -228,21 +228,21 @@ public class Partide {
                 l=(int)(S.charAt(0))-(int)('a');
             String temp=S.substring(1,S.length());
             int c=Integer.valueOf(temp)-1;
-            yCoordinate=l;
-            xCoordinate=c;
+            yCoord=l;
+            xCoord=c;
         }
         else {
             System.out.println("Donnez les coordonnees de votre tir (format 14 27)");
             System.out.println("Premierement la ligne.");
-            yCoordinate=kbd.nextInt()-1;
+            yCoord=kbd.nextInt()-1;
             System.out.println("Maintenant la colonne.");
-            xCoordinate=kbd.nextInt()-1;
+            xCoord=kbd.nextInt()-1;
         }
     }
     
     public void donnerCoordonesTirAleatoire(int line,int column){
-        yCoordinate=rnd.nextInt(line);
-        xCoordinate=rnd.nextInt(column);
+        yCoord=rnd.nextInt(line);
+        xCoord=rnd.nextInt(column);
     }
     
     public void tirOrdinateur(Plateau p){
@@ -251,8 +251,9 @@ public class Partide {
             if (difficulte == 1) {
                 donnerCoordonesTirAleatoire(p.getLines(), p.getColumns());
             }
-            bol = p.tirerDessus(yCoordinate, xCoordinate);
+            bol = p.tirerDessus(yCoord, xCoord);
         }
+        p.affichageRudimentaire();
     }
     
     public void jouerADeux(){
@@ -268,14 +269,14 @@ public class Partide {
                         donnerCoordonesTir(tabPlateaux[1]);
                         boolean bol=false;
                             while(bol==false){
-                                bol=tabPlateaux[1].tirerDessus(yCoordinate,xCoordinate);
+                                bol=tabPlateaux[1].tirerDessus(yCoord,xCoord);
                             }
                         }
                         if(j==1){
                             donnerCoordonesTir(tabPlateaux[0]);
                             boolean bol=false;
                             while(bol==false){
-                                bol=tabPlateaux[0].tirerDessus(yCoordinate,xCoordinate);
+                                bol=tabPlateaux[0].tirerDessus(yCoord,xCoord);
                             }
                         }
                         
@@ -309,7 +310,7 @@ public class Partide {
                             donnerCoordonesTir(tabPlateaux[cible-1]);
                             boolean bol=false;
                             while(bol==false){
-                                bol=tabPlateaux[cible].tirerDessus(yCoordinate,xCoordinate);
+                                bol=tabPlateaux[cible].tirerDessus(yCoord,xCoord);
                             }
                         }
                         else ;//pour un ordinateur
