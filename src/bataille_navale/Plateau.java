@@ -187,12 +187,12 @@ import java.util.Scanner;
                 
             }
         }
-        if (tabF[l][c]==0){
+        if (tabF[ligne][colonne]==0){
             bol=true;
             tabF[l][c]=-1;
         }
-        if (bol==true)
-            affichageRudimentaire();
+        //if (bol==true)
+            //affichageRudimentaire();
         return(bol);
     }
     
