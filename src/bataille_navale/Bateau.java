@@ -97,14 +97,40 @@ public class Bateau {
         return(corect);
     }//pose l'horientation du bateau
     
-    public void renseignementsSimples(){
+   public void renseignementsSimples(){//CASE SENSITIVE REQUIRED
         boolean bol=false;
             while(bol==false){
-                System.out.println("Bateau de taille "+length+". Donner l'orientation, H pour horizontale et V pour verticale.");
-                String S=kbd.next();
-                bol=setPosition(S);
+                String S="";
+                 while((!(S.equals("H"))&&!S.equals("h")&&!S.equals("V")&&!S.equals("v"))){
+                 System.out.println("Bateau de taille "+length+". Donner l'orientation, H pour horizontale et V pour verticale.");
+                 S=kbd.nextLine();  
+                 }
+                bol=setPosition(S); 
                 System.out.println("Bateau de taille "+length+". Donner les coordones du bateau.(de forme A4)");
-                String SC=kbd.next();
+            
+                String SC=kbd.nextLine(); 
+              
+                //Besoin d'importer le nombre de lignes et colonnes du plateau ! pr l'instant ne marche qu'entre A1 et Z9
+                boolean bol2 = false;
+                while(bol2 != true){
+                    if(SC.length()==2){
+                        if(((SC.charAt(0)>='A')&&(SC.charAt(0)<='Z'))||((SC.charAt(0)>='a')&&(SC.charAt(0)<='z'))&&((SC.charAt(1)>'0')&&(SC.charAt(1)<'9'))){
+                                    bol2=true;
+                        } else { 
+                            System.out.println("Coordonées incorectes");
+                            System.out.println("Bateau de taille "+length+". Donner les coordones du bateau.(de forme A4)");
+                            SC=kbd.nextLine();  
+                         
+                        }
+                    } else { 
+                        System.out.println("Coordonées incorectes");
+                        System.out.println("Bateau de taille "+length+". Donner les coordones du bateau.(de forme A4)");
+                        SC=kbd.nextLine();  
+                       // coorColonne = SC.substring(1,SC.length());
+                     //   numColonne = getNumericValue(coorColonne.charAt(0));
+                     }
+                }
+
                 setCoordinatesSimple(SC);
             }
     }//se renseigne pour un bateau en coordonees avec lettres
