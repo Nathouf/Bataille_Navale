@@ -19,6 +19,7 @@ public class Partide {
     private int xCoord;
     private int yCoord;
     private int difficulte;
+    private int leDernierVivant;
     private String[] tabPlayers;
     private Plateau[] tabPlateaux;
     Random rnd = new Random();
@@ -217,7 +218,10 @@ public class Partide {
     public int calculeNrJoueursVivants(){
         int nr=0;
         for(int i=0;i<tabPlateaux.length;i++){
-            if (tabPlateaux[i].isLiving()) nr++;                    
+            if (tabPlateaux[i].isLiving()){
+                nr++;
+                leDernierVivant=i;
+            }                    
         }
         return nr;
     }
@@ -258,7 +262,7 @@ public class Partide {
             }
             bol = p.tirerDessus(yCoord, xCoord);
         }
-        p.affichageRudimentaire();
+        //p.affichageRudimentaire();
     }
     
     public void jouerADeux(){
@@ -276,7 +280,8 @@ public class Partide {
                             while(bol==false){
                                 bol=tabPlateaux[1].tirerDessus(yCoord,xCoord);
                             }
-                        tabPlateaux[1].affichageRudimentaire();
+                        //tabPlateaux[1].affichageRudimentaire();
+                        tabPlateaux[1].affichageTerminal();
                         }
                         if(j==1){
                             donnerCoordonesTir(tabPlateaux[0]);
@@ -292,20 +297,61 @@ public class Partide {
                         if (j==0){
                             System.out.println("l'ordi1 tire");
                             tirOrdinateur(tabPlateaux[1]);
+                            //tabPlateaux[1].affichageRudimentaire();
+                            tabPlateaux[1].affichageTerminal();
                         }
                         if (j==1) {
                             System.out.println("l'ordi2 tire");
                             tirOrdinateur(tabPlateaux[0]);
+                            tabPlateaux[0].affichageTerminal();
                         }
                     }
             }
         nombreJoueursVivants=calculeNrJoueursVivants();
         }
+        System.out.println("Le dernier vivant est "+tabPlayers[leDernierVivant]+"le joueur numero "+(leDernierVivant+1));
+    }
+    
+    public void jouerAPlus(){
+        int nombreJoueursVivants=calculeNrJoueursVivants();
+        int i;
+        while(nombreJoueursVivants>1){
+            i=-1;
+            while(i<tabPlayers.length-1){
+                    i++;
+                    if (tabPlateaux[i].isLiving()){
+                        if (!tabPlayers[i].equals("ordinateur")){
+                            System.out.println("Le joueur "+tabPlayers[i]+" choisit sa cible. Introduisez le nombre de votre cible.");
+                            int cible=kbd.nextInt()-1;//faut changer
+                            donnerCoordonesTir(tabPlateaux[cible]);
+                            boolean bol=false;
+                            while(bol==false){
+                                bol=tabPlateaux[cible].tirerDessus(yCoord,xCoord);
+                            }
+                        }
+                        else {
+                            int cible=i;
+                            do{
+                                cible=rnd.nextInt(nrPlayers-1);
+                            } while((cible==i)||(tabPlateaux[cible].isLiving()==false));
+                            System.out.println("l'ordi "+(i+1)+" tire");
+                            tirOrdinateur(tabPlateaux[cible]);
+                            //tabPlateaux[1].affichageRudimentaire();
+                            tabPlateaux[cible].affichageTerminal();
+                        }
+                    }
+                    else i=i;//si le joueur n'est pas vivant on passe son tour;
+                }
+            nombreJoueursVivants=calculeNrJoueursVivants();    
+            }//pour une partide plusieurs players
+        System.out.println("Le dernier vivant est "+tabPlayers[leDernierVivant]+"le joueur numero "+(leDernierVivant+1));
     }
     
     public void jouer(){
         int nombreJoueursVivants=calculeNrJoueursVivants();
         if (nrPlayers==2) jouerADeux();
+        else jouerAPlus();
+        
             /*else{
                 while(i<tabPlayers.length){
                     i++;
