@@ -299,11 +299,13 @@ public class Partide {
                             tirOrdinateur(tabPlateaux[1]);
                             //tabPlateaux[1].affichageRudimentaire();
                             tabPlateaux[1].affichageTerminal();
+                            System.out.println();
                         }
                         if (j==1) {
                             System.out.println("l'ordi2 tire");
                             tirOrdinateur(tabPlateaux[0]);
                             tabPlateaux[0].affichageTerminal();
+                            System.out.println();
                         }
                     }
             }
