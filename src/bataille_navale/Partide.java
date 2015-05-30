@@ -41,23 +41,23 @@ public class Partide {
         tabPlayers=new String[2];
         String sp_mp="";
         while((!(sp_mp.equals("S"))&&!sp_mp.equals("s")&&!sp_mp.equals("m")&&!sp_mp.equals("M"))){
-            System.out.println("Introduce S for singleplayer or M for multiplayer");
+            System.out.println("Rentrez S pour jouer seul et M pour du multijoueur ");
             sp_mp=kbd.nextLine();  
         }
         if((sp_mp.equals("S"))||(sp_mp.equals("s"))){
             tabPlayers=new String[2];
-            System.out.println("Introduce the name of the first player");
+            System.out.println("rentrez le nom du premier joueur");
             tabPlayers[0]=kbd.next();
             tabPlayers[1]="ordinateur";
             tabPlateaux=new Plateau[2];
             nrPlayers=2;
         }
         if((sp_mp.equals("M"))||(sp_mp.equals("m"))){
-            System.out.println("introduce the number of players");
+            System.out.println("rentrez le nombre de joueurs");
             nrPlayers=kbd.nextInt();
             tabPlayers=new String[nrPlayers];
             for(int i=0;i<tabPlayers.length;i++){
-                System.out.println("Introduce the name of the player"+(i+1));
+                System.out.println("Rentrez le nombre du joueur "+(i+1));
                 tabPlayers[i]=kbd.next();
             }
             tabPlateaux=new Plateau[nrPlayers];
@@ -65,20 +65,31 @@ public class Partide {
     }//demande si le jeu est singleplayer ou multiplayer
     
     public void difficulteAi(){
-        System.out.println("Choose the inteligence of the AI by introducing its number");
-        System.out.println("1.completely random");
-        System.out.println("2.smart choices");
+        System.out.println("Choisissez le type d'Inteligence artificielle en rentrant le numéro correspondant");
+        System.out.println("1.entierement aléatoire");
+        System.out.println("2.Skynet !");
         difficulte=kbd.nextInt();
     }
     
-    public void typeDeJeu(){
-        System.out.println("Choose the type of game by introducing its number");
-        System.out.println("1.rectangular field, 10x10, fixed number of ships");
-        System.out.println("2.rectangular field, any dimensions, any number of ships ");
-        System.out.println("3.rectangular field, any dimensions, fixed number of ships");
-        System.out.println("4.triangular field, fixed number of ships");
-        type=kbd.nextInt();
-    }//demande le type de jeu
+   public void typeDeJeu() {
+        System.out.println("Choisissez le type de partie en rentrant le numéro correspondant");
+        System.out.println("1.plateau rectangulaire, 10x10, nombre de bateaux fixé");
+        System.out.println("2.plateau rectangulaire, n'importe quelle dimension, n'importe quel nombre de bateaux");
+        System.out.println("3.plateau rectangulaire, n'importe quelle dimension, nombre de bateaux fixé");
+        System.out.println("4.plateau triangulaire, nombre de bateaux fixé");
+       
+        boolean bol = false;
+        String input = kbd.nextLine();
+        while (!bol) {
+            if ((input.length() == 1) && (input.charAt(0) == '1' || input.charAt(0) == '2' || input.charAt(0) == '3' || input.charAt(0) == '4')) {
+                bol = true;
+            } else {
+                System.out.println("veuillez rentrer 1,2,3 ou 4");
+                input = kbd.nextLine();
+            }
+         type = input.charAt(0) - 48; 
+        }
+     }//demande le type de jeu
     
     public void quickSort(int left,int right,Bateau[] b){ 
         int l=left,r=right; 
@@ -115,22 +126,22 @@ public class Partide {
             ship=10;
         }
         if(type==2){
-            System.out.println("introduce the number of lines");
+            System.out.println("introduisez le nombre de lignes");
             int line=kbd.nextInt();
-            System.out.println("introduce the number of columns");
+            System.out.println("introduisez le nombre de colonnes");
             int column=kbd.nextInt();
             boolean bol=false;
             
-            System.out.println("introduce the total number of ships");
+            System.out.println("introduisez le nombre total de bateaux");
             ship=kbd.nextInt();
             Bateau[] b=new Bateau[ship];
             while((bol==false)){
                 int i=0;
                 while(i<ship){
-                    System.out.println("introduce the length and then the number of ships of that length that you want to have");
-                    System.out.println("introduce the length");
+                    System.out.println("introduisez la longueur et le nombre de bateaux de cette longueur que vous désirez");
+                    System.out.println("introduisez la longueur");
                     int givenLength=kbd.nextInt();
-                    System.out.println("introduce the number of ships of this length, you can place "+(ship-i)+" more ships");
+                    System.out.println("introduisez le nombre de bateaux de cette longueur, vous pouvez placer "+(ship-i)+" navires de plus");
                     int nrLength=kbd.nextInt();
                     int k=i;
                     if (i+nrLength<=ship)i=i+nrLength;
@@ -154,9 +165,9 @@ public class Partide {
             }
         }
          if(type==3){
-            System.out.println("introduce the number of lines");
+            System.out.println("introduisez le nombre de lignes");
             int line=kbd.nextInt();
-            System.out.println("introduce the number of columns");
+            System.out.println("introduisez le nombre de colonnes ");
             int column=kbd.nextInt();
            
            
