@@ -71,14 +71,25 @@ public class Partide {
         difficulte=kbd.nextInt();
     }
     
-    public void typeDeJeu(){
-        System.out.println("Choose the type of game by introducing its number");
-        System.out.println("1.rectangular field, 10x10, fixed number of ships");
-        System.out.println("2.rectangular field, any dimensions, any number of ships ");
-        System.out.println("3.rectangular field, any dimensions, fixed number of ships");
-        System.out.println("4.triangular field, fixed number of ships");
-        type=kbd.nextInt();
-    }//demande le type de jeu
+      public void typeDeJeu(){       
+        System.out.println("Choisissez le type de partie en rentrant le numéro correspondant");
+        System.out.println("1.plateau rectangulaire, 10x10, nombre de bateaux fixé");
+        System.out.println("2.plateau rectangulaire, n'importe quelle dimension, n'importe quel nombre de bateaux");
+        System.out.println("3.plateau rectangulaire, n'importe quelle dimension, nombre de bateaux fixé");
+        System.out.println("4.plateau triangulaire, nombre de bateaux fixé");
+        String type="";
+        boolean bol=false; 
+        type=kbd.nextLine();
+        while(!bol){
+            if((type.length()==1)&&
+        (type.charAt(0)=='1'||type.charAt(0)=='2'||type.charAt(0)=='3'||type.charAt(0)=='4')){
+                bol = true;
+            }else{
+                System.out.println("veuillez rentrer 1,2,3 ou 4");
+                type=kbd.nextLine();
+            }
+        }
+        type=kbd.nextLine();
     
     public void quickSort(int left,int right,Bateau[] b){ 
         int l=left,r=right; 
