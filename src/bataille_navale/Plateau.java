@@ -104,7 +104,34 @@ import java.util.Scanner;
         System.out.println();
     }//affiche le plateau de maniere rudimentaire
     
-   public boolean emplacementPossible(Bateau b){
+    public String aPrinter(int l,int c){
+        String S=" ";
+        if (tabF[l][c]==-1) S="0";
+        if (tabF[l][c]==-2) S="T";
+        if (tabF[l][c]==-3) S="C";
+        return(S);
+    }
+    
+    public void affichageTerminal(){
+        for(int j=0;j<tabF[0].length;j++){
+            System.out.print("+-");
+        }
+        System.out.println("+");
+        for(int i=0;i<tabF.length;i++){
+                for(int j=0;j<tabF[0].length;j++){
+                        if (j==0) System.out.print("|"+aPrinter(i,j)+"|");
+                        if (j!=0) System.out.print(aPrinter(i,j)+"|");
+                    
+                }
+            System.out.println();
+            System.out.print("+");
+            for(int j=0;j<tabF[0].length;j++)
+                System.out.print("-+");
+            System.out.println();
+        }
+    }
+    
+    public boolean emplacementPossible(Bateau b){
         boolean bol=true;
         if(b.getHorizontal()){
             if (b.getXCoordinate()+b.getLength()>tabF[0].length){bol=false;} 
