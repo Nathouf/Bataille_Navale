@@ -10,6 +10,7 @@ package bataille_navale;
  * @author Dannemp
  */
 
+import java.util.Arrays;
 import java.util.Scanner;
     public class Plateau {
         private String name;
@@ -23,7 +24,7 @@ import java.util.Scanner;
         //Le tableau des bateaux
         private Bateau[] tabB;
         Scanner kbd=new Scanner(System.in);
-
+        
     public Plateau(String nom){
        name=nom;
        //System.out.println(name);
@@ -63,7 +64,7 @@ import java.util.Scanner;
        columns=column;
        tabF=new int[line][column];
        fill0();
-       tabB=b;
+       tabB=Arrays.copyOf(b, b.length);
        
     }
     public Plateau(String nom,int line,int column){
@@ -84,6 +85,10 @@ import java.util.Scanner;
         return columns;
     }
     
+    public Bateau[] getTabB(){
+        return tabB;
+    }
+    
     public void fill0(){
         for(int i=0;i<tabF.length;i++)
             for(int j=0;j<tabF[0].length;j++)
@@ -99,7 +104,7 @@ import java.util.Scanner;
         System.out.println();
     }//affiche le plateau de maniere rudimentaire
     
-    public boolean emplacementPossible(Bateau b){
+   public boolean emplacementPossible(Bateau b){
         boolean bol=true;
         if(b.getHorizontal()){
             if (b.getXCoordinate()+b.getLength()>tabF[0].length){bol=false;} 
