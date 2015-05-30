@@ -319,6 +319,8 @@ public class Partide {
             i=-1;
             while(i<tabPlayers.length-1){
                     i++;
+                    nombreJoueursVivants=calculeNrJoueursVivants();
+                    if(nombreJoueursVivants>1){
                     if (tabPlateaux[i].isLiving()){
                         if (!tabPlayers[i].equals("ordinateur")){
                             System.out.println("Le joueur "+tabPlayers[i]+" choisit sa cible. Introduisez le nombre de votre cible.");
@@ -332,45 +334,25 @@ public class Partide {
                         else {
                             int cible=i;
                             do{
-                                cible=rnd.nextInt(nrPlayers-1);
+                                cible=rnd.nextInt(nrPlayers);
                             } while((cible==i)||(tabPlateaux[cible].isLiving()==false));
                             System.out.println("l'ordi "+(i+1)+" tire");
                             tirOrdinateur(tabPlateaux[cible]);
                             //tabPlateaux[1].affichageRudimentaire();
                             tabPlateaux[cible].affichageTerminal();
+                            System.out.println();
                         }
                     }
                     else i=i;//si le joueur n'est pas vivant on passe son tour;
                 }
+            }
             nombreJoueursVivants=calculeNrJoueursVivants();    
             }//pour une partide plusieurs players
-        System.out.println("Le dernier vivant est "+tabPlayers[leDernierVivant]+"le joueur numero "+(leDernierVivant+1));
+        System.out.println("Le dernier vivant est "+tabPlayers[leDernierVivant]+" le joueur numero "+(leDernierVivant+1));
     }
     
     public void jouer(){
-        int nombreJoueursVivants=calculeNrJoueursVivants();
         if (nrPlayers==2) jouerADeux();
         else jouerAPlus();
-        
-            /*else{
-                while(i<tabPlayers.length){
-                    i++;
-                    if (tabPlateaux[i].isLiving()){
-                        if (!tabPlayers[i].equals("ordinateur")){
-                            System.out.println("Le joueur "+tabPlayers[i]+" choisit sa cible. Introduisez le nombre de votre cible.");
-                            int cible=kbd.nextInt();//faut changer
-                            donnerCoordonesTir(tabPlateaux[cible-1]);
-                            boolean bol=false;
-                            while(bol==false){
-                                bol=tabPlateaux[cible].tirerDessus(yCoord,xCoord);
-                            }
-                        }
-                        else ;//pour un ordinateur
-                    }
-                    else i=i;//si le joueur n'est pas vivant on passe son tour;
-                }
-            nombreJoueursVivants=calculeNrJoueursVivants();    
-            }//pour une partide plusieurs players
-        }*/
     }
 }
