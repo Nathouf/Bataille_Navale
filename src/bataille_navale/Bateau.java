@@ -142,7 +142,7 @@ public class Bateau {
         setCoordinatesOrdi(xL,xC);
     }
     
-    public boolean tir(int x, int y){
+    public boolean tir(int y, int x){
         boolean touche=false;
         if ((dHorizontal)&&(y==yCoordinate)&&(x>=xCoordinate)&&(x<=xCoordinate+length)){
             touche=true;
@@ -154,7 +154,8 @@ public class Bateau {
         }
         
         if(touche){
-            if (nrTouches==length) state=3;
+            if (nrTouches==length) 
+                state=3;
             else state=2;
         }
         return(touche);
