@@ -276,6 +276,7 @@ public class Partide {
                             while(bol==false){
                                 bol=tabPlateaux[1].tirerDessus(yCoord,xCoord);
                             }
+                        tabPlateaux[1].affichageRudimentaire();
                         }
                         if(j==1){
                             donnerCoordonesTir(tabPlateaux[0]);
