@@ -140,8 +140,13 @@ public class Partide {
                     quickSort(0,b.length-1,b);
                     bol=numberOfShipsPossible(b,line,column);
             }
+            
             for(int j=0;j<tabPlayers.length;j++){
-                tabPlateaux[j]=new Plateau(tabPlayers[j],line,column,b);
+                Bateau[] a=new Bateau[b.length];
+                        for (int n=0;n<a.length;n++){
+                            a[n]=new Bateau(b[n].getLength());
+                        }
+                tabPlateaux[j]=new Plateau(tabPlayers[j],line,column,a);
                 System.out.println(tabPlayers[j]+" le joueur "+(j+1)+" positionne sa flotille");
                 tabPlateaux[j].fillPlateau();
                 
